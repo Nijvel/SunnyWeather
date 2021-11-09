@@ -51,6 +51,7 @@ class PlaceFragment : Fragment(), LifecycleObserver {
                 adapter.notifyDataSetChanged()
             }
         }
+        // 设置监听器
         viewModel.placeLiveData.observe(this, Observer { result ->
             val places = result.getOrNull()
             if (places != null) {
