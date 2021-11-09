@@ -40,6 +40,7 @@ class PlaceFragment : Fragment(), LifecycleObserver {
         recyclerView?.layoutManager = layoutManager
         adapter = PlaceAdapter(this, viewModel.placeList)
         recyclerView?.adapter = adapter
+        // 如果输入的文字发生变化，进行搜索
         searchPlaceEdit?.addTextChangedListener { editable ->
             val content = editable.toString()
             if (content.isNotEmpty()) {
