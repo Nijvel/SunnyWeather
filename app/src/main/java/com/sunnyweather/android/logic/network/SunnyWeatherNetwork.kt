@@ -1,5 +1,6 @@
 package com.sunnyweather.android.logic.network
 
+import com.sunnyweather.android.logic.model.Weather
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,9 +13,14 @@ import kotlin.coroutines.suspendCoroutine
 object SunnyWeatherNetwork {
 
     private val placeService = ServiceCreator.create<PlaceService>()
+    private val weatherService = ServiceCreator.create<WeatherService>()
 
     // 在协程作用域中调用此函数，通过await函数将调用的协程挂起，当网络请求返回的时候，唤醒被挂起的协程
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+
+    suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+
+    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
 
     // 因为不同的Service接口返回的数据类型可能不同，所以写成这样方便复用。定义成Call<T>的扩展函数，也是方便调用。
     // 在await函数中直接通过enqueue进行网络请求

@@ -5,6 +5,7 @@ import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        // onCreate方法发送Lifecycle的onCreate消息
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
